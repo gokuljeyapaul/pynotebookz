@@ -1,0 +1,1127 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{CaliforniaHousing}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}298}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plot}
+          \PY{k+kn}{from} \PY{n+nn}{pandas}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k}{import} \PY{n}{scatter\PYZus{}matrix}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}selection} \PY{k}{import} \PY{n}{SelectKBest}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}selection} \PY{k}{import} \PY{n}{chi2}
+          
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LinearRegression}
+          \PY{c+c1}{\PYZsh{}import sklearn}
+          \PY{c+c1}{\PYZsh{}print(\PYZsq{}The scikit\PYZhy{}learn version is \PYZob{}\PYZcb{}.\PYZsq{}.format(sklearn.\PYZus{}\PYZus{}version\PYZus{}\PYZus{}))}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{tree} \PY{k}{import} \PY{n}{DecisionTreeClassifier}\PY{p}{,} \PY{n}{DecisionTreeRegressor}
+          
+          \PY{k+kn}{import} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{as} \PY{n+nn}{sm}
+          \PY{k+kn}{import} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{formula}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{as} \PY{n+nn}{smf}
+          
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{StandardScaler}\PY{p}{,} \PY{n}{OneHotEncoder}\PY{p}{,} \PY{n}{StandardScaler}\PY{p}{,}\PY{n}{Normalizer}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{compose} \PY{k}{import} \PY{n}{ColumnTransformer}\PY{p}{,} \PY{n}{make\PYZus{}column\PYZus{}transformer}
+          
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{mean\PYZus{}squared\PYZus{}error}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+          
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{roc\PYZus{}curve}\PY{p}{,} \PY{n}{auc}
+          
+          \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}299}]:} \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{D:/Workspace/mlspace/datasets/housing.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{data}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plot}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_1_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}300}]:} \PY{n}{attributes} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{longitude}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{latitude}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{housing\PYZus{}median\PYZus{}age}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{total\PYZus{}rooms}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{total\PYZus{}bedrooms}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{population}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{households}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{median\PYZus{}income}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ocean\PYZus{}proximity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{median\PYZus{}house\PYZus{}value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+          \PY{n}{scatter\PYZus{}matrix}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{attributes}\PY{p}{]}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}300}]:} array([[<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5BAD03D30>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5BE37E0F0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5A67036A0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C9877D30>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C989F400>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C989F438>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5A66AC160>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5A66D27F0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5A673AE80>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5A676B550>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5B4673BE0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5B46A52B0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5B46CD940>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5BEF34FD0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C2F266A0>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C2F4DD30>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C2F7D400>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C2FA5A90>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C2FD5160>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C2FFE7B8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C3024E48>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C3057518>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C307DBA8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C30AE278>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C30D6908>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C30FFF98>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C87CF668>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C87F8CF8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C88293C8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8850A58>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8883128>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C88A97B8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C88D3E48>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8903518>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C892BBA8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8CF0278>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8D17908>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8D40F98>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8D71668>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C8D9BCF8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C919B3C8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C91C2A58>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C91F6128>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C97DE7B8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5C9804E48>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA286518>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA2AFBA8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA2E0278>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA308908>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA331F98>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA364668>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA38BCF8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA3BD3C8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA3E3A58>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA418128>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CA43E7B8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDAC5E48>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDAF9518>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDB20BA8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDB52278>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDB7B908>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDBA5F98>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDBD5668>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDBFECF8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDC2F3C8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDC58A58>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDC89128>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDCB27B8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDCDAE48>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDD09518>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CDD33BA8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE005278>],
+                 [<matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE02C908>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE055F98>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE087668>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE0ADCF8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE0E03C8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE10AA58>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE13E128>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE1647B8>,
+                  <matplotlib.axes.\_subplots.AxesSubplot object at 0x000001A5CE18DE48>]],
+                dtype=object)
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_2_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}301}]:} \PY{n}{data}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{scatter}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{median\PYZus{}income}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{median\PYZus{}house\PYZus{}value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}301}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a5bac50160>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}302}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plot}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{data}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{households}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+          \PY{n}{data}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{population}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+          \PY{n}{data}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}bedrooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+          \PY{n}{data}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}rooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+          \PY{n}{data}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{latitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+          \PY{n}{data}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{longitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}302}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a5d19fd518>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}303}]:} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{housing\PYZus{}median\PYZus{}age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{housing\PYZus{}median\PYZus{}age}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}rooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{total\PYZus{}rooms}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{population}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{population}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{households}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{households}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{median\PYZus{}house\PYZus{}value}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+          
+          \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}rooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}rooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{households}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}bedrooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}bedrooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{households}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pop\PYZus{}household}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{population}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{households}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          
+          \PY{n+nb}{list}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}303}]:} ['longitude',
+           'latitude',
+           'housing\_median\_age',
+           'total\_rooms',
+           'total\_bedrooms',
+           'population',
+           'households',
+           'median\_income',
+           'ocean\_proximity',
+           'median\_house\_value',
+           'avg\_rooms',
+           'avg\_bedrooms',
+           'pop\_household']
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}304}]:} \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}304}]:}    longitude  latitude  housing\_median\_age  total\_rooms  total\_bedrooms  \textbackslash{}
+          0    -122.23     37.88                41.0        880.0           129.0   
+          1    -122.22     37.86                21.0       7099.0          1106.0   
+          2    -122.24     37.85                52.0       1467.0           190.0   
+          3    -122.25     37.85                52.0       1274.0           235.0   
+          4    -122.25     37.85                52.0       1627.0           280.0   
+          
+             population  households  median\_income ocean\_proximity  median\_house\_value  \textbackslash{}
+          0       322.0       126.0         8.3252        NEAR BAY            452600.0   
+          1      2401.0      1138.0         8.3014        NEAR BAY            358500.0   
+          2       496.0       177.0         7.2574        NEAR BAY            352100.0   
+          3       558.0       219.0         5.6431        NEAR BAY            341300.0   
+          4       565.0       259.0         3.8462        NEAR BAY            342200.0   
+          
+             avg\_rooms  avg\_bedrooms  pop\_household  
+          0   6.984127      1.023810       2.555556  
+          1   6.238137      0.971880       2.109842  
+          2   8.288136      1.073446       2.802260  
+          3   5.817352      1.073059       2.547945  
+          4   6.281853      1.081081       2.181467  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}305}]:} \PY{n}{data}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}305}]:}                     longitude  latitude  housing\_median\_age  total\_rooms  \textbackslash{}
+          longitude            1.000000 -0.924664           -0.108197     0.044568   
+          latitude            -0.924664  1.000000            0.011173    -0.036100   
+          housing\_median\_age  -0.108197  0.011173            1.000000    -0.361262   
+          total\_rooms          0.044568 -0.036100           -0.361262     1.000000   
+          total\_bedrooms       0.069608 -0.066983           -0.320451     0.930380   
+          population           0.099773 -0.108785           -0.296244     0.857126   
+          households           0.055310 -0.071035           -0.302916     0.918484   
+          median\_income       -0.015176 -0.079809           -0.119034     0.198050   
+          median\_house\_value  -0.045967 -0.144160            0.105623     0.134153   
+          avg\_rooms           -0.027540  0.106389           -0.153277     0.133798   
+          avg\_bedrooms         0.013402  0.070025           -0.077918     0.029373   
+          pop\_household        0.002476  0.002366            0.013191    -0.024581   
+          
+                              total\_bedrooms  population  households  median\_income  \textbackslash{}
+          longitude                 0.069608    0.099773    0.055310      -0.015176   
+          latitude                 -0.066983   -0.108785   -0.071035      -0.079809   
+          housing\_median\_age       -0.320451   -0.296244   -0.302916      -0.119034   
+          total\_rooms               0.930380    0.857126    0.918484       0.198050   
+          total\_bedrooms            1.000000    0.877747    0.979728      -0.007723   
+          population                0.877747    1.000000    0.907222       0.004834   
+          households                0.979728    0.907222    1.000000       0.013033   
+          median\_income            -0.007723    0.004834    0.013033       1.000000   
+          median\_house\_value        0.049686   -0.024650    0.065843       0.688075   
+          avg\_rooms                 0.001538   -0.072213   -0.080598       0.326895   
+          avg\_bedrooms              0.045887   -0.066510   -0.055158      -0.062299   
+          pop\_household            -0.028355    0.069863   -0.027309       0.018766   
+          
+                              median\_house\_value  avg\_rooms  avg\_bedrooms  pop\_household  
+          longitude                    -0.045967  -0.027540      0.013402       0.002476  
+          latitude                     -0.144160   0.106389      0.070025       0.002366  
+          housing\_median\_age            0.105623  -0.153277     -0.077918       0.013191  
+          total\_rooms                   0.134153   0.133798      0.029373      -0.024581  
+          total\_bedrooms                0.049686   0.001538      0.045887      -0.028355  
+          population                   -0.024650  -0.072213     -0.066510       0.069863  
+          households                    0.065843  -0.080598     -0.055158      -0.027309  
+          median\_income                 0.688075   0.326895     -0.062299       0.018766  
+          median\_house\_value            1.000000   0.151948     -0.046739      -0.023737  
+          avg\_rooms                     0.151948   1.000000      0.848616      -0.004852  
+          avg\_bedrooms                 -0.046739   0.848616      1.000000      -0.006179  
+          pop\_household                -0.023737  -0.004852     -0.006179       1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}306}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{PiYG}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}306}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a5d1b09e48>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}307}]:} \PY{n}{data}\PY{o}{.}\PY{n}{dtypes}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}307}]:} longitude             float64
+          latitude              float64
+          housing\_median\_age    float64
+          total\_rooms           float64
+          total\_bedrooms        float64
+          population            float64
+          households            float64
+          median\_income         float64
+          ocean\_proximity        object
+          median\_house\_value    float64
+          avg\_rooms             float64
+          avg\_bedrooms          float64
+          pop\_household         float64
+          dtype: object
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}308}]:} \PY{n}{data}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 13 columns):
+longitude             20640 non-null float64
+latitude              20640 non-null float64
+housing\_median\_age    20640 non-null float64
+total\_rooms           20640 non-null float64
+total\_bedrooms        20433 non-null float64
+population            20640 non-null float64
+households            20640 non-null float64
+median\_income         20640 non-null float64
+ocean\_proximity       20640 non-null object
+median\_house\_value    20640 non-null float64
+avg\_rooms             20640 non-null float64
+avg\_bedrooms          20433 non-null float64
+pop\_household         20640 non-null float64
+dtypes: float64(12), object(1)
+memory usage: 2.0+ MB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}309}]:} \PY{n}{data}\PY{o}{.}\PY{n}{ocean\PYZus{}proximity}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}309}]:} array(['NEAR BAY', '<1H OCEAN', 'INLAND', 'NEAR OCEAN', 'ISLAND'],
+                dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}310}]:} \PY{n}{data}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}310}]:} 414
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}311}]:} \PY{n}{data}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}311}]:} longitude               0
+          latitude                0
+          housing\_median\_age      0
+          total\_rooms             0
+          total\_bedrooms        207
+          population              0
+          households              0
+          median\_income           0
+          ocean\_proximity         0
+          median\_house\_value      0
+          avg\_rooms               0
+          avg\_bedrooms          207
+          pop\_household           0
+          dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}312}]:} \PY{n}{imputed\PYZus{}data} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{imputed\PYZus{}data}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+longitude             0
+latitude              0
+housing\_median\_age    0
+total\_rooms           0
+total\_bedrooms        0
+population            0
+households            0
+median\_income         0
+ocean\_proximity       0
+median\_house\_value    0
+avg\_rooms             0
+avg\_bedrooms          0
+pop\_household         0
+dtype: int64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}313}]:} \PY{n}{imputed\PYZus{}data\PYZus{}copy} \PY{o}{=} \PY{n}{imputed\PYZus{}data}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}print(imputed\PYZus{}encoded\PYZus{}data.columns.tolist())}
+          
+          \PY{n}{preprocess\PYZus{}transform} \PY{o}{=} \PY{n}{make\PYZus{}column\PYZus{}transformer}\PY{p}{(}\PY{p}{(}\PY{n}{OneHotEncoder}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{oh\PYZus{}encoded\PYZus{}array} \PY{o}{=} \PY{n}{preprocess\PYZus{}transform}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{imputed\PYZus{}data\PYZus{}copy}\PY{p}{)}\PY{o}{.}\PY{n}{toarray}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{oh\PYZus{}encoded\PYZus{}array}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{n}{oh\PYZus{}encoded\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{oh\PYZus{}encoded\PYZus{}array}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n}{oh\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+          \PY{n}{imputed\PYZus{}data\PYZus{}copy}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{oh\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}imputed\PYZus{}encoded\PYZus{}data = imputed\PYZus{}data\PYZus{}copy.join(oh\PYZus{}encoded\PYZus{}data)}
+          \PY{n}{imputed\PYZus{}encoded\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{imputed\PYZus{}data\PYZus{}copy}\PY{p}{,} \PY{n}{oh\PYZus{}encoded\PYZus{}data}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          
+          \PY{n}{imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(20640, 5)
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}313}]:}    longitude  latitude  housing\_median\_age  total\_rooms  total\_bedrooms  \textbackslash{}
+          0    -122.23     37.88                41.0        880.0           129.0   
+          1    -122.22     37.86                21.0       7099.0          1106.0   
+          2    -122.24     37.85                52.0       1467.0           190.0   
+          3    -122.25     37.85                52.0       1274.0           235.0   
+          4    -122.25     37.85                52.0       1627.0           280.0   
+          
+             population  households  median\_income ocean\_proximity  median\_house\_value  \textbackslash{}
+          0       322.0       126.0         8.3252        NEAR BAY            452600.0   
+          1      2401.0      1138.0         8.3014        NEAR BAY            358500.0   
+          2       496.0       177.0         7.2574        NEAR BAY            352100.0   
+          3       558.0       219.0         5.6431        NEAR BAY            341300.0   
+          4       565.0       259.0         3.8462        NEAR BAY            342200.0   
+          
+             avg\_rooms  avg\_bedrooms  pop\_household  ocean\_proximitity\_0  \textbackslash{}
+          0   6.984127      1.023810       2.555556                  0.0   
+          1   6.238137      0.971880       2.109842                  0.0   
+          2   8.288136      1.073446       2.802260                  0.0   
+          3   5.817352      1.073059       2.547945                  0.0   
+          4   6.281853      1.081081       2.181467                  0.0   
+          
+             ocean\_proximitity\_1  ocean\_proximitity\_2  ocean\_proximitity\_3  \textbackslash{}
+          0                  0.0                  0.0                  1.0   
+          1                  0.0                  0.0                  1.0   
+          2                  0.0                  0.0                  1.0   
+          3                  0.0                  0.0                  1.0   
+          4                  0.0                  0.0                  1.0   
+          
+             ocean\_proximitity\_4  
+          0                  0.0  
+          1                  0.0  
+          2                  0.0  
+          3                  0.0  
+          4                  0.0  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}314}]:} \PY{n}{final\PYZus{}imputed\PYZus{}encoded\PYZus{}data} \PY{o}{=} \PY{n}{imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          
+          \PY{n}{final\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}314}]:}    longitude  latitude  housing\_median\_age  total\_rooms  total\_bedrooms  \textbackslash{}
+          0    -122.23     37.88                41.0        880.0           129.0   
+          1    -122.22     37.86                21.0       7099.0          1106.0   
+          2    -122.24     37.85                52.0       1467.0           190.0   
+          3    -122.25     37.85                52.0       1274.0           235.0   
+          4    -122.25     37.85                52.0       1627.0           280.0   
+          
+             population  households  median\_income  median\_house\_value  avg\_rooms  \textbackslash{}
+          0       322.0       126.0         8.3252            452600.0   6.984127   
+          1      2401.0      1138.0         8.3014            358500.0   6.238137   
+          2       496.0       177.0         7.2574            352100.0   8.288136   
+          3       558.0       219.0         5.6431            341300.0   5.817352   
+          4       565.0       259.0         3.8462            342200.0   6.281853   
+          
+             avg\_bedrooms  pop\_household  ocean\_proximitity\_0  ocean\_proximitity\_1  \textbackslash{}
+          0      1.023810       2.555556                  0.0                  0.0   
+          1      0.971880       2.109842                  0.0                  0.0   
+          2      1.073446       2.802260                  0.0                  0.0   
+          3      1.073059       2.547945                  0.0                  0.0   
+          4      1.081081       2.181467                  0.0                  0.0   
+          
+             ocean\_proximitity\_2  ocean\_proximitity\_3  ocean\_proximitity\_4  
+          0                  0.0                  1.0                  0.0  
+          1                  0.0                  1.0                  0.0  
+          2                  0.0                  1.0                  0.0  
+          3                  0.0                  1.0                  0.0  
+          4                  0.0                  1.0                  0.0  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}315}]:} \PY{n}{stdScaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{unscaled\PYZus{}data} \PY{o}{=} \PY{n}{final\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{colNames} \PY{o}{=} \PY{n}{unscaled\PYZus{}data}\PY{o}{.}\PY{n}{columns}
+          
+          \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data} \PY{o}{=} \PY{n}{stdScaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{unscaled\PYZus{}data}\PY{p}{)}
+          \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{colNames}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}316}]:} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}316}]:}    longitude  latitude  housing\_median\_age  total\_rooms  total\_bedrooms  \textbackslash{}
+          0  -1.327835  1.052548            0.982143    -0.804819       -0.975228   
+          1  -1.322844  1.043185           -0.607019     2.045890        1.355088   
+          2  -1.332827  1.038503            1.856182    -0.535746       -0.829732   
+          3  -1.337818  1.038503            1.856182    -0.624215       -0.722399   
+          4  -1.337818  1.038503            1.856182    -0.462404       -0.615066   
+          
+             population  households  median\_income  median\_house\_value  avg\_rooms  \textbackslash{}
+          0   -0.974429   -0.977033       2.344766            2.129631   0.628559   
+          1    0.861439    1.669961       2.332238            1.314156   0.327041   
+          2   -0.820777   -0.843637       1.782699            1.258693   1.155620   
+          3   -0.766028   -0.733781       0.932968            1.165100   0.156966   
+          4   -0.759847   -0.629157      -0.012881            1.172900   0.344711   
+          
+             avg\_bedrooms  pop\_household  ocean\_proximitity\_0  ocean\_proximitity\_1  \textbackslash{}
+          0     -0.154640      -0.049597            -0.891156            -0.681889   
+          1     -0.264265      -0.092512            -0.891156            -0.681889   
+          2     -0.049855      -0.025843            -0.891156            -0.681889   
+          3     -0.050671      -0.050329            -0.891156            -0.681889   
+          4     -0.033737      -0.085616            -0.891156            -0.681889   
+          
+             ocean\_proximitity\_2  ocean\_proximitity\_3  ocean\_proximitity\_4  
+          0            -0.015566             2.830742            -0.384466  
+          1            -0.015566             2.830742            -0.384466  
+          2            -0.015566             2.830742            -0.384466  
+          3            -0.015566             2.830742            -0.384466  
+          4            -0.015566             2.830742            -0.384466  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}317}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}317}]:} ['longitude',
+           'latitude',
+           'housing\_median\_age',
+           'total\_rooms',
+           'total\_bedrooms',
+           'population',
+           'households',
+           'median\_income',
+           'median\_house\_value',
+           'avg\_rooms',
+           'avg\_bedrooms',
+           'pop\_household',
+           'ocean\_proximitity\_0',
+           'ocean\_proximitity\_1',
+           'ocean\_proximitity\_2',
+           'ocean\_proximitity\_3',
+           'ocean\_proximitity\_4']
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}318}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{PiYG}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}318}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a5d1b69978>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}319}]:} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{n}{path\PYZus{}or\PYZus{}buf}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{D:/Workspace/mlspace/datasets/housing\PYZus{}std.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{p}{(}\PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}319}]:} ['longitude',
+           'latitude',
+           'housing\_median\_age',
+           'total\_rooms',
+           'total\_bedrooms',
+           'population',
+           'households',
+           'median\_income',
+           'median\_house\_value',
+           'avg\_rooms',
+           'avg\_bedrooms',
+           'pop\_household',
+           'ocean\_proximitity\_0',
+           'ocean\_proximitity\_1',
+           'ocean\_proximitity\_2',
+           'ocean\_proximitity\_3',
+           'ocean\_proximitity\_4']
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}320}]:} \PY{n}{normalizer} \PY{o}{=} \PY{n}{Normalizer}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{unnormalized\PYZus{}data} \PY{o}{=} \PY{n}{final\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{colNames} \PY{o}{=} \PY{n}{unnormalized\PYZus{}data}\PY{o}{.}\PY{n}{columns}
+          
+          \PY{n}{normalized\PYZus{}imputed\PYZus{}encoded\PYZus{}data} \PY{o}{=} \PY{n}{stdScaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{unnormalized\PYZus{}data}\PY{p}{)}
+          \PY{n}{normalized\PYZus{}imputed\PYZus{}encoded\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{normalized\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{colNames}\PY{p}{)}
+          
+          \PY{n}{normalized\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}320}]:}    longitude  latitude  housing\_median\_age  total\_rooms  total\_bedrooms  \textbackslash{}
+          0  -1.327835  1.052548            0.982143    -0.804819       -0.975228   
+          1  -1.322844  1.043185           -0.607019     2.045890        1.355088   
+          2  -1.332827  1.038503            1.856182    -0.535746       -0.829732   
+          3  -1.337818  1.038503            1.856182    -0.624215       -0.722399   
+          4  -1.337818  1.038503            1.856182    -0.462404       -0.615066   
+          
+             population  households  median\_income  median\_house\_value  avg\_rooms  \textbackslash{}
+          0   -0.974429   -0.977033       2.344766            2.129631   0.628559   
+          1    0.861439    1.669961       2.332238            1.314156   0.327041   
+          2   -0.820777   -0.843637       1.782699            1.258693   1.155620   
+          3   -0.766028   -0.733781       0.932968            1.165100   0.156966   
+          4   -0.759847   -0.629157      -0.012881            1.172900   0.344711   
+          
+             avg\_bedrooms  pop\_household  ocean\_proximitity\_0  ocean\_proximitity\_1  \textbackslash{}
+          0     -0.154640      -0.049597            -0.891156            -0.681889   
+          1     -0.264265      -0.092512            -0.891156            -0.681889   
+          2     -0.049855      -0.025843            -0.891156            -0.681889   
+          3     -0.050671      -0.050329            -0.891156            -0.681889   
+          4     -0.033737      -0.085616            -0.891156            -0.681889   
+          
+             ocean\_proximitity\_2  ocean\_proximitity\_3  ocean\_proximitity\_4  
+          0            -0.015566             2.830742            -0.384466  
+          1            -0.015566             2.830742            -0.384466  
+          2            -0.015566             2.830742            -0.384466  
+          3            -0.015566             2.830742            -0.384466  
+          4            -0.015566             2.830742            -0.384466  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}321}]:} \PY{n}{normalized\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{p}{(}\PY{n}{normalized\PYZus{}imputed\PYZus{}encoded\PYZus{}data} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}321}]:} ['longitude',
+           'latitude',
+           'housing\_median\_age',
+           'total\_rooms',
+           'total\_bedrooms',
+           'population',
+           'households',
+           'median\_income',
+           'median\_house\_value',
+           'avg\_rooms',
+           'avg\_bedrooms',
+           'pop\_household',
+           'ocean\_proximitity\_0',
+           'ocean\_proximitity\_1',
+           'ocean\_proximitity\_2',
+           'ocean\_proximitity\_3',
+           'ocean\_proximitity\_4']
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}322}]:} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy} \PY{o}{=} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{longitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{latitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}bedrooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{population}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}rooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}bedrooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pop\PYZus{}household}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}323}]:} \PY{n}{target} \PY{o}{=} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{features} \PY{o}{=} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}rooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{housing\PYZus{}median\PYZus{}age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{households}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ocean\PYZus{}proximitity\PYZus{}4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{target}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+          \PY{n}{lm} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{lm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print intercept and coefficients}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{lm}\PY{o}{.}\PY{n}{intercept\PYZus{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{lm}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.002208333958308422
+[ 6.67394836e-01 -1.30255186e-01  1.29561969e-01  2.02218850e-01
+  5.65572349e+12  5.30004516e+12  1.77203757e+11  3.57619722e+12
+  3.81401302e+12]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}324}]:} \PY{n}{x\PYZus{}dataframe} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{)}
+          
+          \PY{n}{est} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{OLS}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}dataframe}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+          \PY{n}{est}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}324}]:} <class 'statsmodels.iolib.summary.Summary'>
+          """
+                                      OLS Regression Results                            
+          ==============================================================================
+          Dep. Variable:     median\_house\_value   R-squared:                       0.609
+          Model:                            OLS   Adj. R-squared:                  0.608
+          Method:                 Least Squares   F-statistic:                     3008.
+          Date:                Tue, 15 Jan 2019   Prob (F-statistic):               0.00
+          Time:                        15:55:05   Log-Likelihood:                -14721.
+          No. Observations:               15480   AIC:                         2.946e+04
+          Df Residuals:                   15471   BIC:                         2.953e+04
+          Df Model:                           8                                         
+          Covariance Type:            nonrobust                                         
+          =======================================================================================
+                                    coef    std err          t      P>|t|      [0.025      0.975]
+          ---------------------------------------------------------------------------------------
+          const                   0.0029      0.005      0.579      0.563      -0.007       0.013
+          median\_income           0.6676      0.006    107.573      0.000       0.655       0.680
+          total\_rooms            -0.1291      0.015     -8.429      0.000      -0.159      -0.099
+          housing\_median\_age      0.1303      0.006     22.633      0.000       0.119       0.142
+          households              0.2015      0.015     13.521      0.000       0.172       0.231
+          ocean\_proximitity\_0     0.0664      0.003     19.962      0.000       0.060       0.073
+          ocean\_proximitity\_1    -0.1953      0.004    -50.100      0.000      -0.203      -0.188
+          ocean\_proximitity\_2     0.0283      0.006      5.028      0.000       0.017       0.039
+          ocean\_proximitity\_3     0.0746      0.005     16.553      0.000       0.066       0.083
+          ocean\_proximitity\_4     0.1016      0.004     24.217      0.000       0.093       0.110
+          ==============================================================================
+          Omnibus:                     3553.489   Durbin-Watson:                   1.997
+          Prob(Omnibus):                  0.000   Jarque-Bera (JB):             9199.695
+          Skew:                           1.245   Prob(JB):                         0.00
+          Kurtosis:                       5.839   Cond. No.                     1.93e+15
+          ==============================================================================
+          
+          Warnings:
+          [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+          [2] The smallest eigenvalue is 9.03e-27. This might indicate that there are
+          strong multicollinearity problems or that the design matrix is singular.
+          """
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}325}]:} \PY{n}{linear\PYZus{}regression\PYZus{}predictions} \PY{o}{=} \PY{n}{lm}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{p}{)}
+          \PY{n}{linear\PYZus{}regression\PYZus{}mse} \PY{o}{=} \PY{n}{mean\PYZus{}squared\PYZus{}error}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{linear\PYZus{}regression\PYZus{}predictions}\PY{p}{)}
+          \PY{n}{linear\PYZus{}regression\PYZus{}mse} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{linear\PYZus{}regression\PYZus{}mse}\PY{p}{)}
+          \PY{n}{linear\PYZus{}regression\PYZus{}mse}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}325}]:} 0.6330917413330254
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}326}]:} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy} \PY{o}{=} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          \PY{n}{target} \PY{o}{=} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{features} \PY{o}{=} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy}\PY{p}{[}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{filter}\PY{p}{(}\PY{k}{lambda} \PY{n}{colName}\PY{p}{:} \PY{n}{colName} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{median\PYZus{}house\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{stdScaled\PYZus{}imputed\PYZus{}encoded\PYZus{}data\PYZus{}copy}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{target}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+          
+          \PY{n}{dt\PYZus{}regressor} \PY{o}{=} \PY{n}{DecisionTreeRegressor}\PY{p}{(}\PY{n}{criterion}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mse}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{min\PYZus{}samples\PYZus{}leaf}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+          \PY{n}{dt\PYZus{}regressor}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+          \PY{n}{dt\PYZus{}predictions} \PY{o}{=} \PY{n}{dt\PYZus{}regressor}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{p}{)}
+          \PY{n}{dt\PYZus{}regressor\PYZus{}mse} \PY{o}{=} \PY{n}{mean\PYZus{}squared\PYZus{}error}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{dt\PYZus{}predictions}\PY{p}{)}
+          \PY{n}{dt\PYZus{}regressor\PYZus{}mse} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{dt\PYZus{}regressor\PYZus{}mse}\PY{p}{)}
+          \PY{n}{dt\PYZus{}regressor\PYZus{}mse}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}326}]:} 0.5156229147864553
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}327}]:} \PY{c+c1}{\PYZsh{} TODO: Measure/Plot DecisionTreeRegressor metrics}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}328}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plot}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+          \PY{n}{ax0} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)} 
+          \PY{n}{dt\PYZus{}regressor\PYZus{}rmse\PYZus{}train} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{dt\PYZus{}regressor\PYZus{}rmse\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{}Paramterize the model and let i be the number of minimum instances per leaf node}
+              \PY{n}{dt\PYZus{}regressor\PYZus{}model} \PY{o}{=} \PY{n}{DecisionTreeRegressor}\PY{p}{(}\PY{n}{criterion}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mse}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{min\PYZus{}samples\PYZus{}leaf}\PY{o}{=}\PY{n}{i}\PY{p}{)}   
+              \PY{c+c1}{\PYZsh{}Train the model}
+              \PY{n}{dt\PYZus{}regressor\PYZus{}model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+              \PY{c+c1}{\PYZsh{}Predict query instances}
+              \PY{n}{dt\PYZus{}predicted\PYZus{}train} \PY{o}{=} \PY{n}{dt\PYZus{}regressor\PYZus{}model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{x\PYZus{}train}\PY{p}{)}
+              \PY{n}{dt\PYZus{}predicted\PYZus{}test} \PY{o}{=} \PY{n}{dt\PYZus{}regressor\PYZus{}model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{x\PYZus{}test}\PY{p}{)}
+              \PY{c+c1}{\PYZsh{}Calculate and append the RMSEs}
+              \PY{n}{dt\PYZus{}regressor\PYZus{}rmse\PYZus{}train}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{mean\PYZus{}squared\PYZus{}error}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{dt\PYZus{}predicted\PYZus{}train}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{n}{dt\PYZus{}regressor\PYZus{}rmse\PYZus{}test}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{mean\PYZus{}squared\PYZus{}error}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{dt\PYZus{}predicted\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             
+          \PY{n}{ax0}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}\PY{n}{dt\PYZus{}regressor\PYZus{}rmse\PYZus{}test}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test\PYZus{}Data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax0}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}\PY{n}{dt\PYZus{}regressor\PYZus{}rmse\PYZus{}train}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Train\PYZus{}Data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax0}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{ax0}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RMSE with respect to the minumim number of instances per node}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax0}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}Instances}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax0}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RMSE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plot}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
